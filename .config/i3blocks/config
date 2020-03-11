@@ -1,0 +1,85 @@
+# For the benefit of emacs users: -*- shell-script -*-
+#
+#  _ _____ _     _            _
+# (_)___ /| |__ | | ___   ___| | _____
+# | | |_ \| '_ \| |/ _ \ / __| |/ / __|
+# | |___) | |_) | | (_) | (__|   <\__ \
+# |_|____/|_.__/|_|\___/ \___|_|\_\___/
+
+command=~/.config/i3blocks/blocks/$BLOCK_NAME/$BLOCK_NAME
+align=center
+separator=true
+color=#ffffff
+separator_block_width=40
+markup=pango
+
+# Spotify icon \uF1BC
+[spotify]
+align=left
+label=
+command=~/.config/i3blocks/scripts/spotify.py
+color=#000
+interval=1
+
+
+[home]
+command=df -h /home | awk 'FNR==2{print $4}'
+interval=3
+label=<span color="#a9e185"> </span>
+
+
+
+[memory]
+command=free -h --si | awk 'FNR==2{ print $0 }' | awk '{ print $7 }'
+interval=2
+label=<span color="#a9e185"> </span>
+
+[cpu_usage]
+command=~/.config/i3blocks/scripts/cpu_usage
+interval=1
+LABEL=
+#min_width=CPU: 100.00%
+#T_WARN=50
+#T_CRIT=80
+#DECIMALS=2
+
+
+[volume]
+command=pulseaudio-ctl full-status | awk '{ printf "%i%\n", $1 }'
+interval=2
+label=<span color="#ff79c6"> </span>
+
+[time]
+command=date '+%I:%M'
+interval=1
+label=<span color="#ffb86c"> </span>
+
+[date]
+command=date '+%Y %H:%M:%S'
+interval=1
+label=<span color="#8be9fd"> </span>
+
+[volume]
+command=~/.config/i3blocks/scripts/volume
+LABEL=♪ 
+interval=once
+signal=10
+#STEP=5%
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+
+[bandwidth]
+command=~/.config/i3blocks/scripts/bandwidth
+interval=1
+#INTERFACE=eth0
+#INLABEL=IN 
+#OUTLABEL=OUT 
+#TREAT_UNKNOWN_AS_UP=0
+
+[openvpn]
+command=~/.config/i3blocks/scripts/openvpn
+interval=1
+PID_FILE_FORMAT='/run/openvpn/*.pid'
+
+
+
